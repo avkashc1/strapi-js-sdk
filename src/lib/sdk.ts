@@ -66,9 +66,11 @@ export default class Strapi {
       if (this.storeConfig.cookie) {
         existingToken = Cookies.get(this.storeConfig.cookie.key);
       } else if (this.storeConfig.localStorage) {
-        existingToken = JSON.parse(window.localStorage.getItem(
-          this.storeConfig.localStorage.key
-        ) as string);
+        existingToken = JSON.parse(
+          window.localStorage.getItem(
+            this.storeConfig.localStorage.key
+          ) as string
+        );
       }
       if (existingToken) {
         this.setToken(existingToken, true);
@@ -87,20 +89,23 @@ export default class Strapi {
     url: string,
     requestConfig?: AxiosRequestConfig
   ): Promise<any> {
-    try {
-      const response: AxiosResponse = await this.axios.request({
+    // try {
+    this.axios
+      .request({
         method,
         url,
         ...requestConfig
-      });
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        throw new Error(error.response.data.message);
-      } else {
-        throw error;
-      }
-    }
+      })
+      .then(response => response.data)
+      .catch(error => error);
+    // return response.data;
+    // } catch (error) {
+    //   if (error.response) {
+    //     throw new Error(error.response.data.message);
+    //   } else {
+    //     throw error;
+    //   }
+    // }
   }
 
   /**

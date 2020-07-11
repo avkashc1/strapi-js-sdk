@@ -1,13 +1,17 @@
 {
-  "name": "strapi-sdk-javascript",
-  "version": "0.3.3",
-  "description": "The official Strapi SDK for JavaScript",
+  "name": "strapi-js-sdk",
+  "version": "0.0.1",
+  "description": "Strapi SDK for JavaScript",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/strapi/strapi-sdk-javascript",
+  "repository": "https://github.com/avkashc1/strapi-js-sdk",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "npm",
+    "strapi",
+    "sdk"
+  ],
   "scripts": {
     "info": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
