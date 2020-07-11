@@ -90,14 +90,27 @@ export default class Strapi {
     requestConfig?: AxiosRequestConfig
   ): Promise<any> {
     // try {
-    this.axios
+    let flag = 0;
+    const response: AxiosResponse = await this.axios
       .request({
         method,
         url,
         ...requestConfig
       })
-      .then(response => response.data)
-      .catch(error => error);
+      .then(response => {
+        flag = 1;
+        return response.data;
+      })
+      .catch(error => {
+        flag = 0;
+        return error;
+      });
+    if (flag) {
+      return response;
+    } else {
+      throw response;
+    }
+    // return response;
     // return response.data;
     // } catch (error) {
     //   if (error.response) {
